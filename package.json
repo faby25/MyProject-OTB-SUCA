@@ -147,6 +147,16 @@
         "datatables.net-buttons-bs5": "^2.2.1",
         "datatables.net-dt": "^1.11.3",
         "slug": "^5.2.0"
+    },
+
+    {
+      "name": "myapp",
+      "description": "a really cool app",
+      "version": "1.0.0",
+      "engines": {
+        "node": "16.13.1"
+      }
     }
+
 
 }
