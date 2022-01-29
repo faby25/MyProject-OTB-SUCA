@@ -1,8 +1,22 @@
 {
   "name": "architectui-react-theme-free",
   "version": "1.0.0",
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "author": "faby25",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.9.8"
+  },
   "engines": {
-    "node": "16.13.1"
+    "node": "16.13.1",
+    "npm": "8.1.2"
+  },
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "description": "ArchitectUI - Bootstrap 4 ReactJS Admin Dashboard Template FREE",
   "author": "DashboardPack.com",
@@ -15,11 +29,11 @@
     "private": true,
     "scripts": {
 
-    "start": "cross-env NODE_PATH=./src node scripts/start.js",
-    "build": "cross-env NODE_PATH=./src node scripts/build.js",
-    "test": "cross-env NODE_PATH=./src node scripts/test.js --env=jsdom",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+      "start": "cross-env NODE_PATH=./src node scripts/start.js",
+      "build": "cross-env NODE_PATH=./src node scripts/build.js",
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "predeploy": "npm run build",
+      "deploy": "gh-pages -d build",
 
         "dev": "npm run development",
         "development": "mix",
