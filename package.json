@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "engines": {
     "node": "16.13.1"
-  }
+  },
   "description": "ArchitectUI - Bootstrap 4 ReactJS Admin Dashboard Template FREE",
   "author": "DashboardPack.com",
   "homepage": "",
@@ -151,6 +151,4 @@
         "datatables.net-dt": "^1.11.3",
         "slug": "^5.2.0"
     }
-
-
 }
