@@ -1,48 +1,48 @@
 <aside id="sidebar" class="active main-sidebar sidebar-white sidebar-light elevation-4">
-    <a href="/" class="brand-link">
-        <img src="images/Logo!SeikoC.png" alt="INICIO" class="brand-image img-circle elevation-3" style="opacity:.8">
+    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="brand-link">
+        <x-application-logo class="brand-image img-circle elevation-3" style="opacity:.8" id="2" />
         <span class="logo brand-text font-weight-light ">
-            <b>{{ Auth::user()->name }}</b>
+            <b>{{ Auth::user()->name}}</b>
         </span>
-    </a>
+    </x-nav-link>
     <ul class="pt-3 nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu">
         @if (Auth::user()->hasAnyRole('Admin', 'Cajero','Lecturador'))
-          <li class="nav-item has-treeview ">
-              <a class="nav-link  " href="adminis.dashboard">
-                  <i class="fas fa-fw fa-share "></i>
-                  <p>NOTIFICACIONES<i class="fas fa-angle-left right"></i></p>
-              </a>
-              <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                      <a class="nav-link  " href="adminis.dashboard">
-                          <i class="far fa-fw fa-circle "></i>
-                          <p>Buzon de Reclamos y Sugerencias</p>
-                      </a>
-                  </li>
-                  <li class="nav-item has-treeview ">
-                      <a class="nav-link  " href="">
-                          <i class="far fa-fw fa-circle "></i>
-                          <p>Lista de pagos<i class="fas fa-angle-left right"></i></p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a class="nav-link  " href="/reclamos"><i class="far fa-fw fa-circle "></i>
-                                  <p>por pagar</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link  " href="#">
-                                  <i class="far fa-fw fa-circle "></i>
-                                  <p>retrasos/multas</p>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
-              </ul>
-          </li>
+        <li class="nav-item has-treeview ">
+            <a class="nav-link  " href="adminis.dashboard">
+                <i class="fas fa-fw fa-share "></i>
+                <p>NOTIFICACIONES<i class="fas fa-angle-left right"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a class="nav-link  " href="adminis.dashboard">
+                        <i class="far fa-fw fa-circle "></i>
+                        <p>Buzon de Reclamos y Sugerencias</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview ">
+                    <a class="nav-link  " href="">
+                        <i class="far fa-fw fa-circle "></i>
+                        <p>Lista de pagos<i class="fas fa-angle-left right"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a class="nav-link  " href="/reclamos"><i class="far fa-fw fa-circle "></i>
+                                <p>por pagar</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  " href="#">
+                                <i class="far fa-fw fa-circle "></i>
+                                <p>retrasos/multas</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
         @else
         <li class="nav-item">
-            <a class="nav-link  " href="notices">
+            <a class="nav-link  " href="user.notices">
                 <i class="far fa-fw fa-bell"></i>
                 <p>NOTIFICACIONES<span class="badge badge-success right">4</span></p>
             </a>
@@ -100,19 +100,25 @@
         @endcan
         </li>
         @if (Auth::user()->hasAnyRole('Admin', 'Cajero','Lecturador'))
-        <li class="nav-item">
-            <a class="nav-link  " href="posts">
-                <i class="fa fa-envelope"></i>
-                <p>Posts de la Pagina Principal</p>
-            </a>
-        </li>
-        @else
-        <li class="nav-item">
-            <a class="nav-link  " href="posts">
-                <i class="fa fa-envelope"></i>
-                <p>Buzon de reclamos y Sugerencias</p>
-            </a>
-        </li>
+          <li class="nav-item">
+              <a class="nav-link  " href="posts">
+                  <i class="fa fa-envelope"></i>
+                  <p>Posts de la Pagina Principal</p>
+              </a>
+          </li>
+          @else
+          <li class="nav-item">
+              <a class="nav-link  " href="posts">
+                  <i class="fa fa-envelope"></i>
+                  <p>Buzon de reclamos y Sugerencias</p>
+              </a>
+          </li>
         @endif
+        <li class="nav-item">
+            <a class="nav-link  " href="notices">
+                <i class="fa fa-envelope"></i>
+                <p>Recibos de agua</p>
+            </a>
+        </li>
     </ul>
 </aside>

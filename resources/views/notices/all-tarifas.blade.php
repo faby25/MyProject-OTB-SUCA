@@ -1,3 +1,12 @@
+
+@php
+//$notices=App\Models\Notice::all();
+// $tconsumos=App\Models\Tconsumo::all();
+// $tmultas=App\Models\Tmulta::all();
+// $taportes=App\Models\Taporte::all();
+// $multas=App\Models\Multa::all();
+@endphp
+
 <div class="row">
     <div class="col-xs-12">
         <table class="table table-condensed table-bordered table-striped">
@@ -22,7 +31,7 @@
                     <td>$<?php echo number_format($producto["precio"], 2) ?></td>
                     <td>$<?php echo number_format($totalProducto, 2) ?></td> --}}
                 </tr>
-            <?php 
+            <?php
             // $subtotalConDescuento = $subtotal - $descuento;
             // $impuestos = $subtotalConDescuento * ($porcentajeImpuestos / 100);
             // $total = $subtotalConDescuento + $impuestos;

@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Notice;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
+use App\Models\Notice;
+use App\Models\Lectura;
+use App\Models\Meter;
 /**
  * Class NoticeController
  * @package App\Http\Controllers
@@ -18,10 +19,10 @@ class NoticeController extends Controller
      */
     public function index()
     {
-        $notices = Notice::paginate();
+        // $notices = Notice::paginate();
 
-        return view('notices.index', compact('notices'))
-            ->with('i', (request()->input('page', 1) - 1) * $notices->perPage());
+        return view('notices.index');
+            // ->with('i', (request()->input('page', 1) - 1) * $notices->perPage());
     }
 
     /**

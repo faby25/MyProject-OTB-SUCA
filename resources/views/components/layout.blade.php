@@ -10,29 +10,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+
 </head>
 
 <body style="font-family: Open Sans, sans-serif">
-    <section class="px-4 py-8">
-        <nav class="md:flex fixed top-0 md:justify-between md:items-center">
+        <nav class="md:flex lg:fixed top-0 md:justify-between md:items-center">
             <a href="/">
-                <img src="./images/logo-SeikoC.png" alt="INICIO" width="200" height="20">
+                  <x-application-logo class="w-180 h-auto fill-current " id="1"/>
             </a>
             <div class="flex items-center">
                 @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class="hidden fixed top-0 right-5 px-5 py-5 sm:block ">
                     @auth
                     <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                     @else
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Ingresar</a>
-                    {{-- @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                    @endif --}}
                     @endauth
                 </div>
                 @endif
             </div>
         </nav>
+        <section class="px-4 py-4">
+
         {{$slot}}
     </section>
 </body>

@@ -3,14 +3,12 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"> --}}
 <html lang="en">
 <head>
-  @include('layouts.head')
+  @include('layouts._head')
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-        {{-- @include('layouts.navigation') --}}
         @include('layouts._navbar')
         @include('layouts._sidebar')
-        {{-- {%- include preloader.html -%} --}}
         <div class="content-wrapper">
             <div class="py-6 mx-auto sm:px-6">
                 <div class="p-3 sm:rounded overflow-hidden bg-white border-b border-gray-200">
@@ -35,9 +33,8 @@
                 </div>
             </div>
         </div>
-        @include('layouts.footer')
+        @include('layouts._footer')
     </div>
-
-    @include('layouts.scripts')
+    @include('layouts._scripts')
 </body>
 </html>

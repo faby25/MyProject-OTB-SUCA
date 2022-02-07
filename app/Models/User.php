@@ -10,6 +10,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 use Spatie\Permission\Traits\HasRoles;
 
+use App\Models\Meter;
+use App\Models\Multa;
+use App\Models\Post;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
@@ -51,5 +55,12 @@ class User extends Authenticatable
 
     public function posts(){
       return $this->hasMany(Post::class);
+    }
+
+    public function meters(){
+      return $this->hasMany(Meter::class);
+    }
+    public function multas(){
+      return $this->hasMany(Multa::class);
     }
 }

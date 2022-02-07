@@ -24,32 +24,35 @@
               @enderror
           </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="form-group col-sm-6">
                 {{ Form::label('slug') }}
                 {{ Form::text('slug', $post->slug, ['class' => 'form-control' . ($errors->has('slug') ? ' is-invalid' : ''), 'placeholder' => 'slug', 'value' =>old('slug', $post->slug)]) }}
                 {!! $errors->first('slug', '<div class="invalid-feedback"/>:message</p>') !!}
             </div>
-            <div class="form-group col-sm-6">
-                {{ Form::label('excerpt') }}
-                {{ Form::text('excerpt',$post->excerpt, ['class' => 'form-control' . ($errors->has('excerpt') ? ' is-invalid' : ''), 'placeholder' => 'Excerpt']) }}
-                {!! $errors->first('excerpt', '<div class="invalid-feedback"/>:message</p>') !!}
-            </div>
-        </div>
+        </div> --}}
         <div class="form-group">
+          {{-- <div class="form-group col-sm-6"> --}}
+              {{-- {{ Form::label('excerpt') }}
+              {{ Form::text('excerpt',$post->excerpt, ['class' => 'form-control' . ($errors->has('excerpt') ? ' is-invalid' : ''), 'placeholder' => 'Excerpt']) }}
+              {!! $errors->first('excerpt', '<div class="invalid-feedback"/>:message</p>') !!} --}}
+          {{-- </div> --}}
             {{ Form::label('Detalles del Post') }}
-            {{ Form::textarea('body', $post->body, ['class' => 'form-control' . ($errors->has('body') ? ' is-invalid' : ''), 'placeholder' => 'Body']) }}
+            {{ Form::textarea('body', $post->body, ['class' => 'form-control' . ($errors->has('body') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
             {!! $errors->first('body', '<div class="invalid-feedback"/>:message</p>') !!}
         </div>
-        <div class="form-group">
-          {{ Form::label('Adjumtar archivos') }}
-          {{ Form::file('thumbnail', $post->thumbnail, ['class' => 'form-control' . ($errors->has('thumbnail') ? ' is-invalid' : ''), 'placeholder' => '']) }}
-          {{-- {!! $errors->first('thumbnail', '<div class="invalid-feedback"/>:message</p>') !!} --}}
-          <img src="{{  asset('storage/'.$post->thumbnail) }}" alt="" class="rounded-xl" width="50">
-            {{-- <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="thumbnail">Adjuntar Detalles</label>
-            <input type="file" name="thumbnail" value= "{{$post->thumbnail}}" class="border border-gray-400 p-2 w-full" id="thumbnail"> --}}
-        </div>
 
+        <div class="form-group row">
+          <div class="col-sm-6">
+            {{ Form::label('Adjumtar archivos'),['class'=>'block mb-2 uppercase font-bold text-xs text-gray-700'] }}
+              <input type="file" name="thumbnail" value= "{{$post->thumbnail}}" class="border border-gray-400 p-2 w-full" id="thumbnail">
+              <img src="{{  asset('./storage/'.$post->thumbnail) }}" alt="" class="rounded-xl" width="50">
+              {!! $errors->first('thumbnail', '<div class="invalid-feedback"/>:message</p>') !!}
+          </div>
+            <div class="col-sm-6 ">
+              <img src=".\storage\thumbnails\otbsuca.jpg" alt="Blog Post illustration" width="70" class="rounded">
+            </div>
+        </div>
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary pull-right">Guardar</button>

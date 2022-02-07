@@ -14,12 +14,12 @@ class CreateTmultasTable extends Migration
     public function up()
     {
         Schema::create('tmultas', function (Blueprint $table) {
-            
+
             $table->id();
-            
+
             $table->string('descripcion');
             $table->decimal('monto',8,2);
-            
+
             $table->timestamps();
         });
     }
