@@ -1,5 +1,5 @@
 {
-  "name": "MyProject-OTB-SUCA/tree/mian",
+  "name": "architectui-react-theme-free",
   "version": "1.0.0",
   "author": "faby25",
   "license": "MIT",
@@ -14,7 +14,7 @@
   "description": "Seiko Control Project",
   "repository": {
     "type": "git",
-    "url": "git+https://https://github.com/faby25/MyProject-OTB-SUCA/tree/mian"
+    "url": "git+https://github.com/DashboardPack/architectui-react-theme-free"
   },
 
     "private": true,
