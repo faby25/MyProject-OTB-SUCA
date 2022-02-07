@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\User;
 /**
  * Class Multa
  *
@@ -16,9 +16,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Multa extends Model
 {
-    
-    static $rules = [
-    ];
+
+    // static $rules = [
+    // ];
 
     protected $perPage = 20;
 
@@ -27,8 +27,15 @@ class Multa extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    // protected $fillable = [];
 
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function tmulta(){
+        return $this->belongsTo(User::class);
+    }
 
 
 }

@@ -8,6 +8,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+
+use App\Models\Category;
+use App\Models\User;
+
 /**
  * Class Post
  *
@@ -25,61 +29,57 @@ use Laravel\Sanctum\HasApiTokens;
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class Post extends Model
-{
-   use HasFactory;
+{   // use HasFactory;
+   /**
+    * Attributes that should be mass-assignable.
+    */
+      // protected $fillable= ['title','body','thumbnail'];
+      protected $with=['category', 'user'];//todos los post incluiran su categoria y usuario o autor
+      protected $fillable = ['user_id','category_id','slug','title','excerpt','body'];
+       // protected $guarded=[];
       // protected $guarded= ['id'];
-      //protected $fillable= ['title','excerpt','body'];
 
+    // static $rules = [
+  	// 	'user_id' => 'required',
+  	// 	'category_id' => 'required',
+  	// 	'slug' => 'required',
+  	// 	'title' => 'required',
+  	// 	'excerpt' => 'required',
+  	// 	'body' => 'required',
+    // ];
+    protected $perPage = 10;
 
-    static $rules = [
-		'user_id' => 'required',
-		'category_id' => 'required',
-		'slug' => 'required',
-		'title' => 'required',
-		'excerpt' => 'required',
-		'body' => 'required',
-    ];
-
-    protected $perPage = 20;
-
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['user_id','category_id','slug','title','excerpt','body'];
-
-        protected $with=['category', 'user'];//todos los post incluiran su categoria y usuario o autor
-        // protected $guarded=[];
-
-        public function scopeFilter($query, array $filters)
-        {
-          $query->when($filters['search']?? false, function($query,$search){
-            $query->where(function($query){
-              $query->where('title','like','%'.$search. '%')
-              ->orWhere('body','like','%'.$search.'%');
+    public function scopeFilter($query, array $filters)// allows you to say Post::newQuery()->filter() instead of getPost()
+    {
+        $query->when(
+          $filters['search']?? false, function($query,$search){
+            $query
+                ->where('title','like','%'.$search. '%')
+                ->orWhere('body','like','%'.$search.'%');
+        });
+        $query->when(
+          $filters['category']?? false, function($query,$category){
+            $query
+               ->whereHas('category',function($query){
+                  $query->where('slug', $category);
+                  // ->whereExist(function($query){
+                  //       $query->whereColumn('categories.id','posts.category_id')
+                  //             ->where('categories.slug',$category);
             });
-          });
-            $query->when($filters['category']?? false, function($query,$category){
-
-              $query->whereHas('category',function($query){
-                $query->Where('slug',$category);
+        });
+        $query->when(
+            $filters['user']?? false, function($query,$user){
+              $query
+                ->whereHas('user',function($query){
+                    $query->Where('username',$user);
               });
             });
-
-            $query->when($filters['user']?? false, function($query,$user){
-              $query->whereHas('user',function($query){
-                $query->Where('username',$user);
-              });
-            });
-
-          
         }
 
-        public function category(){
+       public function category(){
           return $this->belongsTo(Category::class);
-        }
-        public function user(){
+       }
+       public function user(){
           return $this->belongsTo(User::class);
-        }
+      }
 }

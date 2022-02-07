@@ -1,27 +1,37 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-bold text-xl">
-            {{ __('Crear') }}
-        </h2>
+        <div class="px-6 mx-3">
+            <x-application-logo class="w-auto h-20" id="otbsuca.jpg" />
+        </div>
+        <div class="col text-center ">
+            <h1 class="font-semibold text-2x1 uppercase">
+                {{ __('Administración del servicio de agua potable') }}
+            </h1>
+            <h2 class="font-bold text-3xl">
+                {{ __('S.A.P. O.T.B. SUCA') }}
+            </h2>
+        </div>
+        <div class="px6 mx-3" style="right: 12px;">
+            <x-application-logo class="w-auto h-20" id="otbsuca.jpg" />
+        </div>
     </x-slot>
 
-    {{-- @section('content') --}}
-    <section class="container">
-        @includeif('partials.errors')
-        {{-- <div class="card card-default"> --}}
-            <div class="card ">
-              <div class="card-header">
-                        <span class="card-title">Create Notice</span>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ url('notifications/store') }}"  role="form" enctype="multipart/form-data">
-                            @csrf
-
-                            @include('notices.form')
-
-                        </form>
-                    </div>
+    <div class="card">
+        <div class="card-header">
+            <div class="float-left">
+                <h2 class="font-bold text-xl">
+                    {{ $notice->detalle ?? __('Recibo') }}
+                </h2>
+            </div>
+            <div class="float-right">
+                <a href="{{ URL::previous() }}" class="btn btn-primary">Volver</a>
+            </div>
         </div>
-    </section>
-{{-- @endsection --}}
+        <div class="card-body">
+
+            @include('notices.recibo')
+            <div class="float-right">
+                <a href="create-pdf-file" class="btn btn-primary">Imprimir</a>
+            </div>
+        </div>
 </x-app-layout>

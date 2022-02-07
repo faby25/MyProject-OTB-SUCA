@@ -13,48 +13,45 @@
             @csrf
             <!-- UserName -->
             <div>
-                <x-label for="username" :value="__('User Name')" />
-
-                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required />
+                <x-form.label for="username" :value="__('User Name')" />
+                <x-form.input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required />
             </div>
             <!-- CI -->
             <div class="mt-4">
-                <x-label for="ci" :value="__('Carnet de Identidad')" />
-                <x-input id="ci" class="block mt-1 w-full" type="text" name="ci" :value="old('ci')" required autofocus />
+                <x-form.label for="ci" :value="__('Carnet de Identidad')" />
+                <x-form.input id="ci" class="block mt-1 w-full" type="text" name="ci" :value="old('ci')" required autofocus />
             </div>
             <!-- Name -->
             <div class="mt-4">
-                <x-label for="name" :value="__('Nombre')" />
+                <x-form.label for="name" :value="__('Nombre')" />
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-form.input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
             <!-- lastName Paterno-->
             <div class="mt-4">
-                <x-label for="lastnameF" :value="__('Apellido Paterno')" />
-                <x-input id="lastnameF" class="block mt-1 w-full" type="text" name="lastnameF" :value="old('lastnameF')" />
+                <x-form.label for="lastnameF" :value="__('Apellido Paterno')" />
+                <x-form.input id="lastnameF" class="block mt-1 w-full" type="text" name="lastnameF" :value="old('lastnameF')" />
             </div>
             <!-- lastName Materno-->
             <div class="mt-4">
-                <x-label for="lastnameM" :value="__('Apellido Materno')" />
-                <x-input id="lastnameM" class="block mt-1 w-full" type="text" name="lastnameM" :value="old('lastnameM')"/>
+                <x-form.label for="lastnameM" :value="__('Apellido Materno')" />
+                <x-form.input id="lastnameM" class="block mt-1 w-full" type="text" name="lastnameM" :value="old('lastnameM')"/>
             </div>
             <!-- Telf -->
             <div class="mt-4">
-                <x-label for="telf" :value="__('Telefono')" />
-                <x-input id="telf" class="block mt-1 w-full" type="text" name="telf" :value="old('telf')"/>
+                <x-form.label for="telf" :value="__('Telefono')" />
+                <x-form.input id="telf" class="block mt-1 w-full" type="text" name="telf" :value="old('telf')"/>
             </div>
             <!-- Email Address -->
             <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-form.label for="email" :value="__('Email')" />
+                <x-form.input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Contraseña')" />
-
-                <x-input id="password" class="block mt-1 w-full"
+                <x-form.label for="password" :value="__('Contraseña')" />
+                <x-form.input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
                                 required autocomplete="new-password" />
@@ -62,9 +59,8 @@
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirmar Contraseña')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
+                <x-form.label for="password_confirmation" :value="__('Confirmar Contraseña')" />
+                <x-form.input id="password_confirmation" class="block mt-1 w-full"
                                 type="password"
                                 name="password_confirmation" required />
             </div>
@@ -74,9 +70,9 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class="ml-4">
+                <x-form.button class="ml-4">
                     {{ __('Registrar') }}
-                </x-button>
+                </x-form.button>
             </div>
         </form>
     </x-auth-card>
