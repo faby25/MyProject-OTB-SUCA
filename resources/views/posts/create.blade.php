@@ -1,8 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-bold text-xl">
-            {{ __('Presentación un Reclamo o sugerencia') }}
-            <a href="{{ url('/Posts/create') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Postear</a>
+            {{ __('Crear un nuevo Post') }}
         </h2>
     </x-slot>
 
@@ -15,35 +14,36 @@
                 <div class="card-header ">
                     <span class="card-title">Postear un Reclamo o Sugerencia</span>
                 </div>
-                <div class="card-body">
+                <div class="card-body mt-2">
                     <label>*DATOS DE USUARIO</label>
                     @php
                     $users =\App\Models\User::all();
-                    // $posts=\App\Models\Post::all();
                     @endphp
-                    {{-- @foreach ($posts as $post)
-                    @endforeach --}}
                     <div class="row">
-                        <div class="col-sm-6 form-group">
-                            {{ Form::label('Usuario:') }}
-                          {{ Form::text('username',Auth::user()->username, ['class' => 'form-control' , 'placeholder'=>'username' ]), }}
+                        <div class="col-sm-6 ">
+                          {{ Form::label('Usuario:') }}
+                          {{ Form::label(Auth::user()->username)}}
                         </div>
                         <div class="col-sm-6 form-group">
-                            {{ Form::label('Email:') }}
-                          {{ Form::text('email',Auth::user()->email , ['class' => 'form-control'] ) }}
+                          {{ Form::label('Email:') }}
+                          {{ Form::label(Auth::user()->email  ) }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             {{ Form::label('Nombre(s):') }}
-                            {{ Form::text('name',Auth::user()->name , ['class' => 'form-control']) }}
+                            {{ Form::label(Auth::user()->name) }}
                         </div>
                         <div class="col-sm-6 form-group">
                             {{ Form::label('Apellidos:') }}
-                            {{ Form::text('name',Auth::user()->name , ['class' => 'form-control']) }}
+                            {{ Form::label(Auth::user()->name ) }}
                         </div>
                     </div>
-                    @include('posts.form')
+                </div>
+                <hr>
+                <div class="card-body mt-2">
+                @include('posts.form')
+
                 </div>
             </form>
         </div>

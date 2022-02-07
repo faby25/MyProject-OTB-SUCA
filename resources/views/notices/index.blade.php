@@ -1,79 +1,77 @@
-<x-app-layout>
-    <x-slot name="header">
-        <div class="col-sm-6">
-            <h2 class="font-bold text-xl">
-                {{ __('Mis Notificaciones') }}
-            </h2>
-        </div>
-        <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active"></li>
-            </ol>
-        </div>
-    </x-slot>
-    {{-- @section('content') --}}
-    <div class="card">
-        <div class="card-header">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span id="card_title">
-                    {{ __('Notice') }}
-                </span>
-            </div>
-        </div>
-        @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-        @endif
+  <x-app-layout>
+      <x-slot name="header">
+          <div class="col-sm-6">
+              <h2 class="font-bold text-xl">
+                  {{ __('Lista de notificaciones') }}
+              </h2>
+          </div>
+      </x-slot>
 
-        <div class="card-body">
-          @php $posts=\App\Models\Post::all();$i='0'@endphp
-          <table id="example1" class="table table-hover table-striped">
-              <thead>
-                  <tr>
-                      {{-- <th>No</th>
-                      <th>Usuario</th> --}}
-                      <th>Categoría</th>
-                      {{-- <th>Slug</th> --}}
-                      <th>Titulo</th>
-                      {{-- <th>Excerpt</th> --}}
-                      <th>Detalle</th>
-                      <th>Archivos</th>
-                      <th>Archivos</th>
-                  </tr>
-              </thead>
-              <tbody>
-                {{-- @foreach ($notices as $notice) --}}
-                @foreach ($posts as $post)
-                  @if ($post->user_id == auth()->id())
-                  <tr>
-                      {{-- <td>{{ ++$i }}</td>
-                      <td value="{{$post->user_id}}">{{ $post->user->name }}</td> --}}
-                      <td value="{{ $post->category_id}}">{{ $post->category->name}}</td>
-                      {{-- <td>{{ $post->slug }}</td> --}}
-                      <td>{{ $post->title }}</td>
-                      {{-- <td>{{ $post->excerpt }}</td> --}}
-                      <td>{{ $post->body }}</td>
-                      <td>{{ $post->thumbnail }}</td>
-                      <td>
+      <div class="card">
+          @if (Auth::user()->hasAnyRole('Admin', 'Cajero','Lecturador'))
+            @php
+            $meters = App\Models\Meter::all();
+            @endphp
+          @else
+            @php
+            $meters = App\Models\Meter::where('user_id', auth()->id())->get();
+            @endphp
+          @endif
+          <div class="card-header">
+              <div class="form-group col-sm-6">
+                  {{ Form::label('Seleccionar medidor') }}
+                  <select class="form-control">
+                      @foreach ($meters as $meter)
+                      <option value="{{$meter->id}}" {{old('meter_id')==$meter->id ? 'selected':''}}>
+                          {{ucwords($meter->nombre)}}
+                      </option>
+                      @endforeach
+                  </select>
+              </div>
+          </div>
+          <div class="card-body">
+              <table id="example1" class="table table-hover table-striped">
+                  <thead>
+                      <tr>
+                          <th>Medidor</th>
+                          <th>Periodo</th>
+                          <th>Consumo(m3)</th>
+                          <th>Estado</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @php
+                      $notices=App\Models\Notice::all();
+                      @endphp
+                      @foreach ($meters as $meter)
+                        @foreach ($notices as $notice)
 
-                        @method('PATCH')
-                        <form action="{{ url('notices.destroy',$post->id) }}" method="POST">
-                            <a class="btn btn-sm btn-primary " href="{{ url('notices.show',$post->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
-                            <a class="btn btn-sm btn-success" href="{{ url('notices.edit',$post->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i>Borrar</button>
-                        </form>
-                      </td>
-                  </tr>
-                  @endif
-                  @endforeach
-              </tbody>
-            </table>
-        </div>
-    </div>
-    {!! $notices->links() !!}
-    {{-- @endsection --}}
-</x-app-layout>
+                        @if ($notice->lectura->meter_id == $meter->id)
+                        <tr>
+                            <td value="{{$notice->id}}">{{ $notice->lectura->meter->nombre }}</td>
+                            <td>{{ $notice->created_at }}</td>
+                            <td>{{ $notice->lectura->consumo}}</td>
+                            <td>{{-- {{ $notice->pagado }} --}}
+                                @if ($notice->pagado)
+                                {{ "pagado" }}
+                                @else
+                                {{ "pendiente" }}
+                                @endif
+                            </td>
+                            {{-- {{ $post->thumbnail }} --}}
+                            {{-- <img src="{{  asset('./storage/'.$post->thumbnail) }}" alt="" class="rounded-xl" width="100"> --}}
+                            {{-- {{$img = Image::make($path)->resize($width, $height)->save($path)}} --}}
+                            <td>
+                                <a class="btn btn-sm btn-primary " href="notice.show.{{$notice->id}}"><i class="fa fa-fw fa-eye"></i>Recibo</a>
+                            </td>
+                        </tr>
+                        @endif
+                        @endforeach
+                      @endforeach
+
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </x-app-layout>

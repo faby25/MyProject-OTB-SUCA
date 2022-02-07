@@ -7,14 +7,12 @@
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active"></li>
+                <li class="breadcrumb-item"><a href="/">Ver Posts de Inicio</a></li>
             </ol>
         </div>
     </x-slot>
 
-    {{-- <x-slot name="content-main"> --}}
-      <div class="card">
+    <div class="card">
         <div class="card-header">
             <h3 class="card-title">Mis Posts</h3>
             <div class="float-right">
@@ -38,12 +36,10 @@
                         {{-- <th>No</th>
                         <th>Usuario</th> --}}
                         <th>Categoría</th>
-                        {{-- <th>Slug</th> --}}
                         <th>Titulo</th>
-                        {{-- <th>Excerpt</th> --}}
                         <th>Detalle</th>
                         <th>Archivos</th>
-                        <th>Archivos</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,11 +49,14 @@
                         {{-- <td>{{ ++$i }}</td>
                         <td value="{{$post->user_id}}">{{ $post->user->name }}</td> --}}
                         <td value="{{ $post->category_id}}">{{ $post->category->name}}</td>
-                        {{-- <td>{{ $post->slug }}</td> --}}
                         <td>{{ $post->title }}</td>
-                        {{-- <td>{{ $post->excerpt }}</td> --}}
                         <td>{{ $post->body }}</td>
-                        <td>{{ $post->thumbnail }}</td>
+                        <td>
+                          {{-- {{ $post->thumbnail }} --}}
+                          <img src="{{  asset('./storage/'.$post->thumbnail) }}" alt="" class="rounded-xl" width="100">
+
+                          {{-- {{$img = Image::make($path)->resize($width, $height)->save($path)}} --}}
+                        </td>
                         <td>
                           @method('PATCH')
                           <form method="POST" action="posts.delete.{{$post->id}}">
@@ -78,5 +77,4 @@
             </table>
         </div>
     </div>
-    {{-- </x-slot> --}}
 </x-app-layout>
