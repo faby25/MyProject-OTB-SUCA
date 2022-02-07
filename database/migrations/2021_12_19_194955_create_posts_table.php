@@ -14,17 +14,16 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('category_id');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('slug')->unique();
             $table->string('title');
-            $table->string('thumbnail')->nullable();
+            $table->string('thumbnail')->default('thumbnails\\otbsuca.jpg');//->nullable()
             $table->text('excerpt');
             $table->text('body');
             $table->timestamps();
-
-            // $table->timestamps('published_at')->nullable();
           });
     }
 

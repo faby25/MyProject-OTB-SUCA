@@ -23,6 +23,6 @@ class Drowdown-Item extends Component
      */
     public function render()
     {
-        return view('components.drowdown--item');
+        return view('components.drowdown-item');
     }
 }

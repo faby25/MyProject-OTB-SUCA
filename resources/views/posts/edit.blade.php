@@ -1,4 +1,5 @@
 <x-app-layout>
+
     <x-slot name="header">
         <h2 class="font-bold text-xl">
             {{ __('Editar mi Post ') }}
@@ -16,7 +17,6 @@
                     <span class="card-title">  {{ __('Post: '.$post->title) }}</span>
                 </div>
                 <div class="card-body">
-
                   @include('posts.form')
                 </div>
             </form>
